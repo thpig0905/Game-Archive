@@ -1,4 +1,4 @@
-package kr.ex.gamearchive.Configuration;
+package kr.ex.gamearchive.configuration;
 
 import org.springframework.context.annotation.Configuration;
 
