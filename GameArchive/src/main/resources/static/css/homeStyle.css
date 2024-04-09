@@ -1,0 +1,90 @@
+#logo {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    opacity: 0; /* 초기에 Logo가 보이지 않도록 설정 */
+    transition: opacity 2s; /* Logo가 천천히 나타나도록 설정 */
+}
+
+#logo.show {
+    opacity: 1; /* .show 클래스가 추가되면 Logo가 보이도록 설정 */
+}
+
+.move-up {
+    animation: moveUp 1s forwards;
+}
+
+.fade-in {
+    animation: fadeIn 2s forwards;
+}
+
+@keyframes moveUp {
+    100% { transform: translateY(-50px); }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+#logo:hover {
+    background-color: #7c3aed;
+    transition: 0.3s;
+}
+
+#buttons a {
+    transition: 0.3s;
+}
+
+#buttons a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #4b5563;
+}
+
+/* 모달 창 CSS */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    transition: opacity 1s; /* 천천히 사라지는 효과를 위한 transition 설정 */
+    opacity: 0;
+}
+
+.modal.show {
+    display: block;
+    opacity: 1;
+}
+
+.modal-content {
+    position: relative; /* 상대 위치 지정 */
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%; /* 모달 창의 크기를 조절 */
+}
+
+.close {
+    position: absolute; /* 절대 위치 지정 */
+    top: 10px; /* 상단에서 10px 떨어진 위치에 배치 */
+    right: 10px; /* 우측에서 10px 떨어진 위치에 배치 */
+    color: #fff; /* 색상을 밝게 변경 */
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*    input submit 이 위 요소와 20px 떨어지게*/
+input[type="submit"] {
+    margin-top: 20px;
+}
