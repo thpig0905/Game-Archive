@@ -20,7 +20,7 @@
 <div id="signInModal" class="modal">
     <div class="modal-content rounded-lg bg-blue-800 w-96 h-96 flex flex-col items-center justify-center space-3">
         <span class="close space-y-3" onclick="closeModal('signInModal')">&times;</span>
-        <form action="/user/login" method="post" class="space-y-3">
+        <form action="/main/login" method="post" class="space-y-3">
             <input class="w-full px-3 py-2 rounded bg-white text-black" type="text" id="signInId" name="loginId" placeholder="ID">
             <input class="w-full px-3 py-2 rounded bg-white text-black" type="password" id="signInPw" name="password" placeholder="PW">
             <input class="w-full px-3 py-2 rounded bg-blue-500 text-white cursor-pointer" type="submit" value="Sign in" style="margin-top: 50px">
@@ -32,7 +32,7 @@
 <div id="signUpModal" class="modal" style="transform: translateY(-60px)">
     <div class="modal-content rounded-lg bg-green-800 w-96 h-96 flex flex-col items-center justify-center space-3" style="height: 550px">
         <span class="close space-y-3" onclick="closeModal('signUpModal')">&times;</span>
-        <form action="/user/join" method="post" class="space-y-3">
+        <form action="/main/join" method="post" class="space-y-3">
             <input class="w-full px-3 py-2 rounded bg-white text-black" type="text" id="signUpId" name="loginId" placeholder="ID">
             <input class="w-full px-3 py-2 rounded bg-white text-black" type="text" id="name" name="name" placeholder="NAME">
             <input class="w-full px-3 py-2 rounded bg-white text-black" type="password" id="pw" name="password" placeholder="PW">

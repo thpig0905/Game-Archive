@@ -239,29 +239,27 @@
             <div id="util" class="bg-orange-400 rounded-lg"
                  style="width: 380px; height: 260px; margin-top: 20px; padding: 10px;">
                 <div id="userInfo" style="display: flex; align-items: center; justify-content: space-around;">
-                    <div id="userImg" class="bg-orange-600 rounded-lg" style="width: 125px; height: 145px;"></div>
+                    <a data-role="userImage" class="bg-orange-600 rounded-lg" style="width: 125px; height: 145px; cursor: pointer"></a>
                     <div id="nameBox" style="width: 225px; display: flex; flex-direction: column;">
                         <div id="name" style="color: white; font-size: 1.5em; font-weight: bold; text-align: center;">
-                            <p th:if="${user != null}" th:text="${user.getName()}" ></p>
-                            <p th:if="${user == null}">로그인이 필요합니다.</p>
+                            이름 : <span th:if="${user.getName() != null}" th:text="${user.getName()}"></span><span th:if="${user.getName() == null}">이름</span>
                         </div>
-                        <div id="title"
-                             style="color: white; font-size: 1.5em; font-weight: bold; text-align: center; margin-top: 15px;">
-                            <p th:if="${user.getTitle() != null}" th:text="${user.getTitle()}" ></p>
-                            <p th:if="${user.getTitle() == null}">칭호</p>
+                        <div style="color: white; font-size: 1.5em; font-weight: bold; text-align: center; margin-top: 15px;">
+                            <p th:if="${user.getTitle() != null}" th:text="${user.getTitle()}"></p>
+                            <p th:if="${user.getTitle() == null}">타이틀</p>
                         </div>
-                        <div id="level"
-                             style="color: white; font-size: 1.5em; font-weight: bold; text-align: center; margin-top: 15px;">
-                            <p th:if="${user.getLevel() != null}" th:text="${user.getLevel()}" ></p>
-                            <p th:if="${user.getLevel() == null}">레벨</p>
+                        <div id="level" style="color: white; font-size: 1.5em; font-weight: bold; text-align: center; margin-top: 15px;">
+                            레벨 : <span th:if="${user.getLevel() != null}" th:text="${user.getLevel()}"></span>
                         </div>
                     </div>
                 </div>
 
                 <div id="coinBox" class="bg-purple-400 rounded-lg"
                      style="width: 350px; height: 80px; margin-top: 10px; margin-left: 2px; display: flex; align-items: center; justify-content: space-around;">
-                    <p id="userCoin" style="color: white;">보유코인 : <p th:if="${user.getCoin() != null}" th:text="${user.getCoin()}"> <p th:if="${user.getCoin() == null}" th:text="0"> c </p>
-                    <button id="charge" class="bg-yellow-400 rounded-lg"
+                    <p id="userCoin" style="color: white;">보유코인 :
+                    <p th:if="${user.getCoin() != null}" th:text="${user.getCoin()}"></p>
+                    <p th:if="${user.getCoin() == null}">0</p>
+                    <button id="chargeBtn" class="bg-yellow-400 rounded-lg"
                             style="width: 100px; height: 50px; color: gray;">충전
                     </button>
                 </div>
@@ -274,10 +272,10 @@
                     방이름</a>
             </div>
 
-            <button id="logout" class="bg-purple-500 rounded-lg"
-                    style="width: 380px; height: 50px; border: none; margin-top: 20px; color: white;font-size: 1.2em; font-weight: bold;">
-                <a href="/user/logout"> 로그아웃 </a>
-            </button>
+            <a href="/logout" id="logout" class="bg-purple-500 rounded-lg"
+                    style="width: 380px; height: 50px; border: none; margin-top: 20px; color: white;font-size: 1.2em; font-weight: bold; text-align: center; line-height: 50px">
+                로그아웃
+            </a>
         </div>
     </div>
 </div>
@@ -294,11 +292,11 @@
                 <input type="text" id="title" name="title"
                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
-            <div>
-                <label for="image" class="block text-sm font-medium text-gray-700">사진</label>
-                <input type="file" id="image" name="image" accept="image/*"
-                       class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            </div>
+            <!--            <div>-->
+            <!--                <label for="image" class="block text-sm font-medium text-gray-700">사진</label>-->
+            <!--                <input type="file" id="image" name="image" accept="image/*"-->
+            <!--                       class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">-->
+            <!--            </div>-->
             <div>
                 <label for="content" class="block text-sm font-medium text-gray-700">내용</label>
                 <textarea id="content" name="content" rows="3"
@@ -358,7 +356,8 @@
             </div>
             <div>
                 <button type="submit"
-                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" style="margin-bottom: 30px">
+                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        style="margin-bottom: 30px">
                     보내기
                 </button>
             </div>
@@ -388,7 +387,7 @@
 </div>
 
 <!-- 모달 -->
-<div id="userInfoModal" class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+<div id="userInfoModal" class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center z-50 ">
     <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
     <div id="modalContent"
          class="modal-container bg-blue-500 w-11/12 md:max-w-md mx-auto rounded-lg shadow-lg z-50 overflow-y-auto">
@@ -414,6 +413,45 @@
     </div>
 </div>
 
-</body>
+<!-- myInfoModal -->
+<div class="modal fade" id="myInfoModal" tabindex="-1" role="dialog" aria-labelledby="myInfoModalLabel" aria-hidden="true">
+    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50" onclick="closeModal('myInfoModal')"></div>
+    <div
+            class="modal-container bg-blue-500 w-11/12 md:max-w-md mx-auto rounded-lg shadow-lg z-50 overflow-y-auto">
+        <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+            <span class="close" onclick="closeModal('myInfoModal')">&times;</span>
+        </div>
+        <div class="modal-content py-4 text-left px-6 rounded-lg">
+            <form id="myInfoForm" style="display:flex; flex-direction: column; align-items: center; justify-content: space-around"   action="/main/update" method="post">
+                <input type="hidden" name="id" th:value="${user.getId()}">
+                <input type="text" class="bg-gray-200 rounded-lg" style="width: 90%; height: 30px; text-align: center; line-height: 24px;  " name="loginId" th:value="${user.getLoginId()}">
+                <input type="text" class="bg-gray-200 rounded-lg" style="width: 90%; height: 30px; text-align: center; line-height: 24px; margin-top: 20px"name="password" th:value="${user.getPassword()}">
+                <input type="text" class="bg-gray-200 rounded-lg" style="width: 90%; height: 30px; text-align: center; line-height: 24px; margin-top: 20px" name="name" th:value="${user.getName()}">
+                <input type="email" name="email" class="bg-gray-200 rounded-lg" style="width: 90%; height: 30px; text-align: center; line-height: 24px; margin-top: 20px" th:value="${user.getEmail()}">
+                <input type="text" name="phone" class="bg-gray-200 rounded-lg" style="width: 90%; height: 30px; text-align: center; line-height: 24px; margin-top: 20px"  th:value="${user.getPhone()}">
+                <input type="submit" class="px-4 bg-sky-500 p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2"  value="Update" style="cursor: pointer; color: white">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="chargeModal" tabindex="-1" role="dialog" aria-labelledby="chargeModalLabel" aria-hidden="true">
+    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50" onclick="closeModal('chargeModal')"></div>
+    <div class="modal-container bg-blue-500 w-11/12 md:max-w-md mx-auto rounded-lg shadow-lg z-50 overflow-y-auto">
+        <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+            <span class="close" onclick="closeModal('chargeModal')">&times;</span>
+        </div>
+        <div class="modal-content py-4 text-left px-6 rounded-lg">
+            <form id="chargeForm" style="display:flex; flex-direction: column; align-items: center; justify-content: space-around" action="/main/charge" method="post">
+                <input type="hidden" name="id" th:value="${user.getId()}">
+                <p th:text="${user.getCoin()}"></p>
+                <input type="text" name="coin" class="bg-gray-200 rounded-lg" style="width: 90%; height: 30px; text-align: center; line-height: 24px; margin-top: 20px">
+                <input type="submit" style="color: white" class="px-4 bg-sky-500 p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2" value="Charge">
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="/js/mainScript.js"></script>
+</body>
 </html>

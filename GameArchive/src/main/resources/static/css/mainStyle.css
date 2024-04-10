@@ -11,6 +11,27 @@
     background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
 #userInfoModal .modal-content {
     position: relative;
     background-color: #fefefe;
@@ -27,6 +48,99 @@
     color: #fff; /* 색상을 밝게 변경 */
     font-size: 28px;
     font-weight: bold;
+}
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* 배경색과 투명도 조절 */
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* 모달 창의 크기를 조절 */
+    border-radius: 10px; /* 모달 창의 모서리를 둥글게 */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #888;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* 모달 내부 요소 스타일 */
+.modal-container {
+    background-color: #ffffff;
+    width: 90%;
+    max-width: 400px; /* 모달의 최대 너비 설정 */
+    border-radius: 10px;
+    overflow: hidden;
+    margin: auto;
+    position: relative;
+}
+
+.modal-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.modal-container h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+    text-align: center;
+}
+
+.modal-container p {
+    margin: 5px 0;
+    color: #666;
+    text-align: center;
+}
+
+.modal-container .btn-close {
+    background-color: #ccc;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-container .btn-close:hover {
+    background-color: #aaa;
 }
 
 #userInfoModal .close:hover,
