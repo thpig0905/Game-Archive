@@ -78,8 +78,8 @@ window.addEventListener('DOMContentLoaded', function () {
     });
 
     // 모든 userImg 요소에 대한 클릭 이벤트 리스너를 추가합니다.
-    document.querySelectorAll('[data-role="userImg"]').forEach(function(userImg) {
-        userImg.addEventListener('click', function() {
+    document.querySelectorAll('[data-role="userImg"]').forEach(function (userImg) {
+        userImg.addEventListener('click', function () {
             // 데이터 속성에서 사용자 정보를 가져옵니다.
             var name = this.getAttribute('data-name');
             var title = this.getAttribute('data-title');
@@ -96,25 +96,44 @@ window.addEventListener('DOMContentLoaded', function () {
             document.getElementById('userInfoModal').style.display = 'block';
         });
     });
-document.querySelectorAll('[data-role="sponeButton"]').forEach(function(sponeButton) {
-    sponeButton.addEventListener('click', function() {
-        // 데이터 속성에서 게시자의 이름과 ID를 가져옵니다.
-        var name = this.getAttribute('data-name');
-        var userId = this.getAttribute('data-userId');
 
-        // 모달의 내용을 업데이트합니다.
-        var recipientInput = document.getElementById('recipient');
-        recipientInput.value = name;
-        recipientInput.readOnly = true;
-
-        // receiver 필드에 userId 값을 설정합니다.
-        var receiverInput = document.querySelector('input[name="receiver"]');
-        receiverInput.value = userId;
-
-        // 모달을 표시합니다.
-        document.getElementById('sponeModal').style.display = 'block';
+    // Add click event listeners to elements with data-role="dm" to open the chatModal with the correct boardId
+    const dms = document.querySelectorAll('[data-role="dm"]');
+    dms.forEach(function (dm) {
+        dm.addEventListener('click', function () {
+            // Get the parent card element
+            const card = dm.closest('[data-role="card"]');
+            // Get the boardId from the card's data-id attribute
+            const boardId = card.getAttribute('data-id');
+            // Get the chatModal and the boardId input within it
+            const chatModal = document.getElementById('chatModal');
+            const boardIdInput = chatModal.querySelector('input[name="boardId"]');
+            // Set the value of the boardId input to the boardId
+            boardIdInput.value = boardId;
+            // Open the chatModal
+            openModal('chatModal');
+        });
     });
-});
+
+    document.querySelectorAll('[data-role="sponeButton"]').forEach(function (sponeButton) {
+        sponeButton.addEventListener('click', function () {
+            // 데이터 속성에서 게시자의 이름과 ID를 가져옵니다.
+            var name = this.getAttribute('data-name');
+            var userId = this.getAttribute('data-userId');
+
+            // 모달의 내용을 업데이트합니다.
+            var recipientInput = document.getElementById('recipient');
+            recipientInput.value = name;
+            recipientInput.readOnly = true;
+
+            // receiver 필드에 userId 값을 설정합니다.
+            var receiverInput = document.querySelector('input[name="receiver"]');
+            receiverInput.value = userId;
+
+            // 모달을 표시합니다.
+            document.getElementById('sponeModal').style.display = 'block';
+        });
+    });
 
 // 모달의 닫기 버튼에 대한 클릭 이벤트 리스너를 추가합니다.
     document.querySelector('#userInfoModal .close').addEventListener('click', function () {
@@ -144,15 +163,6 @@ document.querySelectorAll('[data-role="sponeButton"]').forEach(function(sponeBut
             openModal('myInfo');
         });
     }
-
-
-    // Add click event listeners to elements with data-role="dm" to open the addBoardModal
-    const dms = document.querySelectorAll('[data-role="dm"]');
-    dms.forEach(function (dm) {
-        dm.addEventListener('click', function () {
-            openModal('chatModal');
-        });
-    });
 
     const chargeBtn = document.getElementById('chargeBtn');
     if (chargeBtn) {

@@ -10,6 +10,5 @@ public class BoardDMForm {
     private Long boardId;
     private String userName;
     private String message;
-    private Long board;
-    private Long user;
+    private String regDate;
 }
