@@ -33,6 +33,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User findUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+
     public User findUserByLoginId(String loginId) {
         return userRepository.findUserByLoginId(loginId) != null ? userRepository.findUserByLoginId(loginId) : null;
     }
@@ -43,7 +47,23 @@ public class UserService {
     }
 
     @Transactional
-    public void addCoin(Long id, int addCoin) {
-        userRepository.addCoin(id, addCoin);
+    public void addCoin(UserForm form) {
+            userRepository.addCoin(form.getId(), form.getAddCoin());
+    }
+
+    @Transactional
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void updateCoin(User user) {
+        Long id = user.getId();
+        int coin = user.getCoin();
+        userRepository.updateCoin(id, coin);
+    }
+
+    public String findUserImage(Long id) {
+        return userRepository.findUserImage(id);
     }
 }

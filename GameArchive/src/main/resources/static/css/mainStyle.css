@@ -312,3 +312,7 @@ body {
 #playGame:last-child {
     margin-bottom: 100px;
 }
+
+[data-role="card"]:last-child {
+    margin-bottom: 100px;
+}

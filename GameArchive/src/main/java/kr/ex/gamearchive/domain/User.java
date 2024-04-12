@@ -1,10 +1,7 @@
 package kr.ex.gamearchive.domain;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
@@ -13,6 +10,7 @@ import java.util.Date;
 @Entity
 @Table(name = "user")
 @NoArgsConstructor
+@ToString
 public class User {
 
     @Id

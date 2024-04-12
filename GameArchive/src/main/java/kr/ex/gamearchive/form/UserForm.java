@@ -14,4 +14,6 @@ public class UserForm {
     private String phone; // 전화번호
     private String gender; // 성별
     private int coin; // 보유 코인
+
+    private int addCoin; // 충전 코인
 }

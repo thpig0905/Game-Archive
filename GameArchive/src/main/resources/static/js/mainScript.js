@@ -77,6 +77,58 @@ window.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // 모든 userImg 요소에 대한 클릭 이벤트 리스너를 추가합니다.
+    document.querySelectorAll('[data-role="userImg"]').forEach(function(userImg) {
+        userImg.addEventListener('click', function() {
+            // 데이터 속성에서 사용자 정보를 가져옵니다.
+            var name = this.getAttribute('data-name');
+            var title = this.getAttribute('data-title');
+            var level = this.getAttribute('data-level');
+            var image = this.getAttribute('data-image');
+
+            // 모달의 내용을 업데이트합니다.
+            document.getElementById('userName').textContent = name;
+            document.getElementById('userTitle').textContent = title;
+            document.getElementById('userLevel').textContent = level;
+            document.getElementById('userProfile').src = image;
+
+            // 모달을 표시합니다.
+            document.getElementById('userInfoModal').style.display = 'block';
+        });
+    });
+document.querySelectorAll('[data-role="sponeButton"]').forEach(function(sponeButton) {
+    sponeButton.addEventListener('click', function() {
+        // 데이터 속성에서 게시자의 이름과 ID를 가져옵니다.
+        var name = this.getAttribute('data-name');
+        var userId = this.getAttribute('data-userId');
+
+        // 모달의 내용을 업데이트합니다.
+        var recipientInput = document.getElementById('recipient');
+        recipientInput.value = name;
+        recipientInput.readOnly = true;
+
+        // receiver 필드에 userId 값을 설정합니다.
+        var receiverInput = document.querySelector('input[name="receiver"]');
+        receiverInput.value = userId;
+
+        // 모달을 표시합니다.
+        document.getElementById('sponeModal').style.display = 'block';
+    });
+});
+
+// 모달의 닫기 버튼에 대한 클릭 이벤트 리스너를 추가합니다.
+    document.querySelector('#userInfoModal .close').addEventListener('click', function () {
+        // 모달을 숨깁니다.
+        document.getElementById('userInfoModal').style.display = 'none';
+    });
+
+// 모달 외부를 클릭하면 모달을 닫습니다.
+    window.addEventListener('click', function (event) {
+        if (event.target == document.getElementById('userInfoModal')) {
+            document.getElementById('userInfoModal').style.display = 'none';
+        }
+    });
+
     const userImage = document.querySelectorAll('[data-role="userImage"]');
     userImage.forEach(function (userImg) {
         userImg.addEventListener('click', function () {
@@ -93,7 +145,8 @@ window.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Add click event listeners to elements with data-role="dm" to open the chatModal
+
+    // Add click event listeners to elements with data-role="dm" to open the addBoardModal
     const dms = document.querySelectorAll('[data-role="dm"]');
     dms.forEach(function (dm) {
         dm.addEventListener('click', function () {
@@ -110,10 +163,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
     const chargeForm = document.getElementById('chargeForm');
     if (chargeForm) {
-        chargeForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Add charge logic here
-        });
+        chargeForm.addEventListener('submit', function (event) {
+        })
     }
 
     // Add click event listeners to elements with data-role="sponeButton" to open the sponeModal
@@ -127,7 +178,7 @@ window.addEventListener('DOMContentLoaded', function () {
     // Add submit event listener to userInfoForm
     const userInfoForm = document.getElementById('userInfoForm');
     if (userInfoForm) {
-        userInfoForm.addEventListener('submit', function(event) {
+        userInfoForm.addEventListener('submit', function (event) {
             event.preventDefault();
             // Add user information update logic here
         });

@@ -111,127 +111,86 @@
                     <i class="fa-solid fa-plus" style="color: #9fa4ad; font-size: 20px; font-weight: bold;"></i>
                 </div>
 
-                <div id="card" class="bg-gray-500 rounded-lg"
-                     style="width: 600px; height: 400px; margin-top: 20px; padding: 20px;">
-                    <div id="boardNav" style="display: flex; justify-content: space-between;">
-                        <div data-role="userImg" class="bg-orange-500 rounded-full"
-                             style="width: 55px; height: 55px; cursor: pointer"></div>
+<!--                <div id="card" class="bg-gray-500 rounded-lg"-->
+<!--                     style="width: 600px; height: 400px; margin-top: 20px; padding: 20px;">-->
+<!--                    <div id="boardNav" style="display: flex; justify-content: space-between;">-->
+<!--                        <div data-role="userImg" class="bg-orange-500 rounded-full"-->
+<!--                             style="width: 55px; height: 55px; cursor: pointer"></div>-->
 
-                        <div id="boardUtils"
+<!--                        <div id="boardUtils"-->
+<!--                             style="line-height: 50px; width: 300px; height: 50px; display: flex; justify-content: flex-end;">-->
+<!--                            <a data-role="dm" style="margin-right: 20px; cursor: pointer;"><i-->
+<!--                                    class="fa-solid fa-message"-->
+<!--                                    style="color: #74C0FC; font-size: 24px;"></i></a>-->
+<!--                            <a id="like" style="margin-right: 20px; cursor: pointer;"><i class="fa-solid fa-heart"-->
+<!--                                                                                         style="color: #ff0001; font-size: 24px;"></i></a>-->
+<!--                            <a data-role="sponeButton" style="cursor: pointer;"><i class="fa-solid fa-money-bill"-->
+<!--                                                                                   style="color: #2ad214; font-size: 24px;"></i></a>-->
+<!--                        </div>-->
+
+<!--                        <div id="regDate" style="width: 150px; height: 50px; text-align: center; line-height: 50px;">-->
+<!--                            <p style="color: white;">2022-12-12 13:22</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div id="boardContents" style="display: flex; width: 100%; height: 280px; margin-top: 20px;">-->
+<!--                        <div id="boardImg" class="rounded-lg" style="flex: 1;">-->
+<!--                            <img src="https://via.placeholder.com/150" class="rounded-lg" alt="boardImg"-->
+<!--                                 style="width: 100%; height: 100%;">-->
+<!--                        </div>-->
+<!--                        <div id="boardTitle" style="flex: 1; overflow: scroll;">-->
+<!--                            <h1 style="color: white; margin-left: 20px; font-size: 2em; font-weight: bold;">제목</h1>-->
+<!--                            <p style="color: white; margin-left: 20px; margin-top: 10px;">내용 I’ve written a few thousand-->
+<!--                                words on why traditional “semantic class names” are the reason CSS is hard to maintain,-->
+<!--                                but the truth is you’re never going to believe me until you actually try it. If you can-->
+<!--                                suppress the urge to retch long enough to give it a chance, I really think you’ll wonder-->
+<!--                                how you ever worked with CSS any other way.I’ve written a few thousand words on why-->
+<!--                                traditional “semantic class names” are the reason CSS is hard to maintain, but the truth-->
+<!--                                is you’re never going to believe me until you actually try it. If you can suppress the-->
+<!--                                urge to retch long enough to give it a chance, I really think you’ll wonder how you ever-->
+<!--                                worked with CSS any other way.</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+                <div th:each="board : ${boards}" data-role="card" th:data-id="${board.id}" class="bg-gray-500 rounded-lg" style="width: 600px; height: 400px; margin-top: 20px; padding: 20px;">
+                    <div data-role="boardNav" style="display: flex; justify-content: space-between;">
+                        <div data-role="userImg" class="bg-orange-500 rounded-full"
+                             th:attr="data-name=${board.user.name},data-title=${board.user.title},data-level=${board.user.level},data-image=${board.user.image}"
+                             style="width: 55px; height: 55px; cursor: pointer">
+                            <img th:src="${board.user.image}" alt="">
+                        </div>
+
+                        <div data-role="boardUtils"
                              style="line-height: 50px; width: 300px; height: 50px; display: flex; justify-content: flex-end;">
                             <a data-role="dm" style="margin-right: 20px; cursor: pointer;"><i
                                     class="fa-solid fa-message"
                                     style="color: #74C0FC; font-size: 24px;"></i></a>
-                            <a id="like" style="margin-right: 20px; cursor: pointer;"><i class="fa-solid fa-heart"
-                                                                                         style="color: #ff0001; font-size: 24px;"></i></a>
-                            <a data-role="sponeButton" style="cursor: pointer;"><i class="fa-solid fa-money-bill"
-                                                                                   style="color: #2ad214; font-size: 24px;"></i></a>
+                            <a data-role="like" style="margin-right: 20px; cursor: pointer;"><i class="fa-solid fa-heart"
+                                                                                                style="color: #ff0001; font-size: 24px;"></i></a>
+                            <a data-role="sponeButton" th:attr="data-name=${board.user.name}, data-userId=${board.user.id}" style="cursor: pointer;">
+                                <i class="fa-solid fa-money-bill" style="color: #2ad214; font-size: 24px;"></i>
+                            </a>
                         </div>
 
-                        <div id="regDate" style="width: 150px; height: 50px; text-align: center; line-height: 50px;">
-                            <p style="color: white;">2022-12-12 13:22</p>
+                        <div data-role="regDate" style="width: 150px; height: 50px; text-align: center; line-height: 50px;">
+                            <p th:text="${#dates.format(board.regDate, 'yyyy-MM-dd HH:mm')}" style="color: white;"></p>
                         </div>
                     </div>
-                    <div id="boardContents" style="display: flex; width: 100%; height: 280px; margin-top: 20px;">
-                        <div id="boardImg" class="rounded-lg" style="flex: 1;">
-                            <img src="https://via.placeholder.com/150" class="rounded-lg" alt="boardImg"
-                                 style="width: 100%; height: 100%;">
+                    <div data-role="boardContents" style="display: flex; width: 100%; height: 280px; margin-top: 20px;">
+                        <div data-role="boardImg" class="rounded-lg bg-gray-400" style="flex: 1;">
+<!--                            <img th:src="${board.image}" class="rounded-lg" alt="boardImg"-->
+<!--                                 style="width: 100%; height: 100%;">-->
                         </div>
-                        <div id="boardTitle" style="flex: 1; overflow: scroll;">
-                            <h1 style="color: white; margin-left: 20px; font-size: 2em; font-weight: bold;">제목</h1>
-                            <p style="color: white; margin-left: 20px; margin-top: 10px;">내용 I’ve written a few thousand
-                                words on why traditional “semantic class names” are the reason CSS is hard to maintain,
-                                but the truth is you’re never going to believe me until you actually try it. If you can
-                                suppress the urge to retch long enough to give it a chance, I really think you’ll wonder
-                                how you ever worked with CSS any other way.I’ve written a few thousand words on why
-                                traditional “semantic class names” are the reason CSS is hard to maintain, but the truth
-                                is you’re never going to believe me until you actually try it. If you can suppress the
-                                urge to retch long enough to give it a chance, I really think you’ll wonder how you ever
-                                worked with CSS any other way.</p>
+                        <div data-role="boardTitle" style="flex: 1; overflow: scroll;">
+                            <h1 th:text="${board.title}" style="color: white; margin-left: 20px; font-size: 2em; font-weight: bold;"></h1>
+                            <p th:text="${board.content}" style="color: white; margin-left: 20px; margin-top: 10px;"></p>
                         </div>
                     </div>
                 </div>
-                <div id="card" class="bg-gray-500 rounded-lg"
-                     style="width: 600px; height: 400px; margin-top: 20px; padding: 20px;">
-                    <div id="boardNav" style="display: flex; justify-content: space-between;">
-                        <div data-role="userImg" class="bg-orange-500 rounded-full"
-                             style="width: 55px; height: 55px; cursor: pointer"></div>
 
-                        <div id="boardUtils"
-                             style="line-height: 50px; width: 300px; height: 50px; display: flex; justify-content: flex-end;">
-                            <a data-role="dm" style="margin-right: 20px; cursor: pointer;"><i
-                                    class="fa-solid fa-message"
-                                    style="color: #74C0FC; font-size: 24px;"></i></a>
-                            <a id="like" style="margin-right: 20px; cursor: pointer;"><i class="fa-solid fa-heart"
-                                                                                         style="color: #ff0001; font-size: 24px;"></i></a>
-                            <a data-role="sponeButton" style="cursor: pointer;"><i class="fa-solid fa-money-bill"
-                                                                                   style="color: #2ad214; font-size: 24px;"></i></a>
-                        </div>
 
-                        <div id="regDate" style="width: 150px; height: 50px; text-align: center; line-height: 50px;">
-                            <p style="color: white;">2022-12-12 13:22</p>
-                        </div>
-                    </div>
-                    <div id="boardContents" style="display: flex; width: 100%; height: 280px; margin-top: 20px;">
-                        <div id="boardImg" class="rounded-lg" style="flex: 1;">
-                            <img src="https://via.placeholder.com/150" class="rounded-lg" alt="boardImg"
-                                 style="width: 100%; height: 100%;">
-                        </div>
-                        <div id="boardTitle" style="flex: 1; overflow: scroll;">
-                            <h1 style="color: white; margin-left: 20px; font-size: 2em; font-weight: bold;">제목</h1>
-                            <p style="color: white; margin-left: 20px; margin-top: 10px;">내용 I’ve written a few thousand
-                                words on why traditional “semantic class names” are the reason CSS is hard to maintain,
-                                but the truth is you’re never going to believe me until you actually try it. If you can
-                                suppress the urge to retch long enough to give it a chance, I really think you’ll wonder
-                                how you ever worked with CSS any other way.I’ve written a few thousand words on why
-                                traditional “semantic class names” are the reason CSS is hard to maintain, but the truth
-                                is you’re never going to believe me until you actually try it. If you can suppress the
-                                urge to retch long enough to give it a chance, I really think you’ll wonder how you ever
-                                worked with CSS any other way.</p>
-                        </div>
-                    </div>
-                </div>
-                <div id="card" class="bg-gray-500 rounded-lg"
-                     style="width: 600px; height: 400px; margin-top: 20px; padding: 20px;">
-                    <div id="boardNav" style="display: flex; justify-content: space-between;">
-                        <div data-role="userImg" class="bg-orange-500 rounded-full"
-                             style="width: 55px; height: 55px; cursor: pointer"></div>
-
-                        <div id="boardUtils"
-                             style="line-height: 50px; width: 300px; height: 50px; display: flex; justify-content: flex-end;">
-                            <a data-role="dm" style="margin-right: 20px; cursor: pointer;"><i
-                                    class="fa-solid fa-message"
-                                    style="color: #74C0FC; font-size: 24px;"></i></a>
-                            <a id="like" style="margin-right: 20px; cursor: pointer;"><i class="fa-solid fa-heart"
-                                                                                         style="color: #ff0001; font-size: 24px;"></i></a>
-                            <a data-role="sponeButton" style="cursor: pointer;"><i class="fa-solid fa-money-bill"
-                                                                                   style="color: #2ad214; font-size: 24px;"></i></a>
-                        </div>
-
-                        <div id="regDate" style="width: 150px; height: 50px; text-align: center; line-height: 50px;">
-                            <p style="color: white;">2022-12-12 13:22</p>
-                        </div>
-                    </div>
-                    <div id="boardContents" style="display: flex; width: 100%; height: 280px; margin-top: 20px;">
-                        <div id="boardImg" class="rounded-lg" style="flex: 1;">
-                            <img src="https://via.placeholder.com/150" class="rounded-lg" alt="boardImg"
-                                 style="width: 100%; height: 100%;">
-                        </div>
-                        <div id="boardTitle" style="flex: 1; overflow: scroll;">
-                            <h1 style="color: white; margin-left: 20px; font-size: 2em; font-weight: bold;">제목</h1>
-                            <p style="color: white; margin-left: 20px; margin-top: 10px;">내용 I’ve written a few thousand
-                                words on why traditional “semantic class names” are the reason CSS is hard to maintain,
-                                but the truth is you’re never going to believe me until you actually try it. If you can
-                                suppress the urge to retch long enough to give it a chance, I really think you’ll wonder
-                                how you ever worked with CSS any other way.I’ve written a few thousand words on why
-                                traditional “semantic class names” are the reason CSS is hard to maintain, but the truth
-                                is you’re never going to believe me until you actually try it. If you can suppress the
-                                urge to retch long enough to give it a chance, I really think you’ll wonder how you ever
-                                worked with CSS any other way.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
+
         </div>
 
         <div id="userUtil" class="w-0 bg-orange-200 h-screen"
@@ -257,7 +216,7 @@
                 <div id="coinBox" class="bg-purple-400 rounded-lg"
                      style="width: 350px; height: 80px; margin-top: 10px; margin-left: 2px; display: flex; align-items: center; justify-content: space-around;">
                     <p id="userCoin" style="color: white;">보유코인 :
-                    <p th:if="${user.getCoin() != null}" th:text="${user.getCoin()}"></p>
+                    <p data-role="coin" th:if="${user.getCoin() != null}" th:text="${user.getCoin()}"></p>
                     <p th:if="${user.getCoin() == null}">0</p>
                     <button id="chargeBtn" class="bg-yellow-400 rounded-lg"
                             style="width: 100px; height: 50px; color: gray;">충전
@@ -276,6 +235,7 @@
                     style="width: 380px; height: 50px; border: none; margin-top: 20px; color: white;font-size: 1.2em; font-weight: bold; text-align: center; line-height: 50px">
                 로그아웃
             </a>
+            <a href="/user/remove" style="color: red">< 탈  퇴 ></a>
         </div>
     </div>
 </div>
@@ -285,7 +245,7 @@
     <div style="width: 500px; height: 500px"
          class="modal-content rounded-lg bg-gray-400 flex flex-col items-center justify-center space-3">
         <span class="close space-y-3" onclick="closeModal('addBoardModal')">&times;</span>
-        <form action="/board/write" method="post" class="space-y-4 w-4/5" enctype="multipart/form-data">
+        <form action="/board/addBoard" method="post" class="space-y-4 w-4/5" enctype="multipart/form-data">
             <!-- 파일 업로드를 위해 enctype 추가 -->
             <div>
                 <label for="title" class="block text-sm font-medium text-gray-700">제목</label>
@@ -302,7 +262,7 @@
                 <textarea id="content" name="content" rows="3"
                           class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
             </div>
-            <input name="writeId" th:value="${user.getId()}" type="hidden">
+            <input name="user" th:value="${user.getId}" type="hidden">
             <div>
                 <button type="submit"
                         class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -371,17 +331,18 @@
          class="modal-content rounded-lg bg-gray-400 flex flex-col items-center justify-center space-3">
         <span class="close space-y-3" onclick="closeModal('sponeModal')">&times;</span>
         <div class="w-full p-4 bg-gray-300 rounded-lg">
-            <label for="recipient" class="block text-sm font-medium text-gray-700">상대 이름</label>
-            <input type="text" id="recipient" name="recipient"
-                   class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            <label for="donationAmount" class="block text-sm font-medium text-gray-700">기부 금액</label>
-            <input type="number" id="donationAmount" name="donationAmount"
-                   class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            <button type="submit"
-                    class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    style="margin-top: 20px;">
-                후원하기
-            </button>
+            <form action="/donate/send" method="post" class="w-full p-4 bg-gray-300 rounded-lg">
+                <label for="recipient" class="block text-sm font-medium text-gray-700">상대 이름</label>
+                <input type="text" id="recipient" name="recipient"
+                       class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <input type="hidden" data-userId="id" name="receiver">
+                <input type="hidden" name="sender" th:value="${user.id}">
+                <label for="amount" class="block text-sm font-medium text-gray-700">기부 금액</label>
+                <input type="number" id="amount" name="amount"
+                       class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <input type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                       style="margin-top: 20px;" value="후원하기">
+            </form>
         </div>
     </div>
 </div>
@@ -402,7 +363,6 @@
                 <h2 id="userName" class="text-2xl font-bold text-center text-gray-700">유저 이름</h2>
                 <p id="userTitle" class="text-center text-sm text-gray-600 mt-2">칭호</p>
                 <p id="userLevel" class="text-center text-sm text-gray-600 mt-2">유저 레벨</p>
-                <p id="userSponsorCount" class="text-center text-sm text-gray-600 mt-2">스폰서 수 : 123</p>
             </div>
             <div class="flex justify-end pt-2">
                 <button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2"
@@ -422,7 +382,7 @@
             <span class="close" onclick="closeModal('myInfoModal')">&times;</span>
         </div>
         <div class="modal-content py-4 text-left px-6 rounded-lg">
-            <form id="myInfoForm" style="display:flex; flex-direction: column; align-items: center; justify-content: space-around"   action="/main/update" method="post">
+            <form id="myInfoForm" style="display:flex; flex-direction: column; align-items: center; justify-content: space-around"   action="/user/update" method="post">
                 <input type="hidden" name="id" th:value="${user.getId()}">
                 <input type="text" class="bg-gray-200 rounded-lg" style="width: 90%; height: 30px; text-align: center; line-height: 24px;  " name="loginId" th:value="${user.getLoginId()}">
                 <input type="text" class="bg-gray-200 rounded-lg" style="width: 90%; height: 30px; text-align: center; line-height: 24px; margin-top: 20px"name="password" th:value="${user.getPassword()}">
@@ -442,11 +402,11 @@
             <span class="close" onclick="closeModal('chargeModal')">&times;</span>
         </div>
         <div class="modal-content py-4 text-left px-6 rounded-lg">
-            <form id="chargeForm" style="display:flex; flex-direction: column; align-items: center; justify-content: space-around" action="/main/charge" method="post">
+            <form id="chargeForm" style="display:flex; flex-direction: column; align-items: center; justify-content: space-around" action="/user/charge" method="post">
                 <input type="hidden" name="id" th:value="${user.getId()}">
-                <p th:text="${user.getCoin()}"></p>
-                <input type="text" name="coin" class="bg-gray-200 rounded-lg" style="width: 90%; height: 30px; text-align: center; line-height: 24px; margin-top: 20px">
-                <input type="submit" style="color: white" class="px-4 bg-sky-500 p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2" value="Charge">
+                <p data-role="coin" th:text="${user.getCoin()}"></p>
+                <input type="text" name="addCoin" class="bg-gray-200 rounded-lg" style="width: 90%; height: 30px; text-align: center; line-height: 24px; margin-top: 20px">
+                <input  type="submit" style="color: white; cursor: pointer; margin-top: 15px" class="px-4 bg-sky-500 p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2" value="Charge">
             </form>
         </div>
     </div>
