@@ -18,8 +18,6 @@ public class UserController {
 
     private final UserService userService;
 
-    private HttpSession session;
-
     public UserController(UserService userService) {
         this.userService = userService;
     }

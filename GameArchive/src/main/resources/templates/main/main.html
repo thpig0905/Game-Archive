@@ -160,6 +160,10 @@
                             <img th:src="${board.user.image}" alt="">
                         </div>
 
+                        <div data-role="userName"  style="margin-left: 15px; width: 50px">
+                            <p style="color: #74C0FC" th:text="${board.user.name}"></p>
+                        </div>
+
                         <div data-role="boardUtils"
                              style="line-height: 50px; width: 300px; height: 50px; display: flex; justify-content: flex-end;">
                             <a data-role="dm" style="margin-right: 20px; cursor: pointer;"><i

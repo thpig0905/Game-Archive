@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpSession;
 import kr.ex.gamearchive.domain.Donate;
 import kr.ex.gamearchive.domain.User;
 import kr.ex.gamearchive.form.DonateForm;
+import kr.ex.gamearchive.service.DonateService;
 import kr.ex.gamearchive.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DonateController {
 
     private final UserService userService;
+    private final DonateService donateService;
 
-    public DonateController(UserService userService) {
+    public DonateController(UserService userService, DonateService donateService) {
         this.userService = userService;
+        this.donateService = donateService;
     }
 
     @PostMapping("/send")
@@ -44,6 +47,8 @@ public class DonateController {
         userService.updateCoin(receiver);
 
         session.setAttribute("user", sender);
+
+        donateService.addDonate(donate);
 
         return "redirect:/main";
     }
