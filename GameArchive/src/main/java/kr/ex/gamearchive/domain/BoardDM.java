@@ -1,5 +1,6 @@
 package kr.ex.gamearchive.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 @Table(name = "board_dm")
 @NoArgsConstructor
 @ToString
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class BoardDM {
     @Id
     @Column(name = "board_dm_id")

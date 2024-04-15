@@ -9,6 +9,8 @@ import kr.ex.gamearchive.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -36,5 +38,11 @@ public class MainController {
         model.addAttribute("boards", boards);
         model.addAttribute("dms", boardDMs);
         return "main/main";
+    }
+
+    @ResponseBody
+    @GetMapping("/board/{boardId}/dms")
+    public List<BoardDM> getBoardDMs(@PathVariable Long boardId) {
+        return boardDMService.findBoardDMsByBoardId(boardId);
     }
 }

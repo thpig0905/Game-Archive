@@ -11,9 +11,11 @@ function openModal(modalId, userInfo) {
         if (modalId === 'chatModal') {
             const message = document.getElementById('message');
             const chatList = document.getElementById('chatList');
-            if (message && chatList) {
+            const boardIdInput = modal.querySelector('input[name="boardId"]');
+            if (message && chatList && boardIdInput) {
                 message.focus();
                 chatList.scrollTop = chatList.scrollHeight;
+                boardIdInput.value = boardId; // Set the boardId
             }
         }
 
@@ -97,23 +99,44 @@ window.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Add click event listeners to elements with data-role="dm" to open the chatModal with the correct boardId
-    const dms = document.querySelectorAll('[data-role="dm"]');
-    dms.forEach(function (dm) {
-        dm.addEventListener('click', function () {
-            // Get the parent card element
-            const card = dm.closest('[data-role="card"]');
-            // Get the boardId from the card's data-id attribute
-            const boardId = card.getAttribute('data-id');
-            // Get the chatModal and the boardId input within it
-            const chatModal = document.getElementById('chatModal');
-            const boardIdInput = chatModal.querySelector('input[name="boardId"]');
-            // Set the value of the boardId input to the boardId
-            boardIdInput.value = boardId;
-            // Open the chatModal
-            openModal('chatModal');
-        });
+
+  // Add click event listeners to elements with data-role="dm" to open the chatModal with the correct boardId
+document.querySelectorAll('[data-role="dm"]').forEach(function(dmButton) {
+    dmButton.addEventListener('click', function() {
+        var boardId = this.getAttribute('data-boardId');
+        fetch('/board/' + boardId + '/dms')
+            .then(response => response.json())
+            .then(dms => {
+                var chatList = document.getElementById('chatList');
+                chatList.innerHTML = ''; // Clear the chat list
+                dms.forEach(function(dm) {
+                    var chatItem = document.createElement('div');
+                    chatItem.className = 'chatItem p-2 rounded-lg bg-white mb-2';
+
+                    var userName = document.createElement('h3');
+                    userName.className = 'font-bold text-gray-700';
+                    userName.textContent = dm.userName;
+                    chatItem.appendChild(userName);
+
+                    var message = document.createElement('p');
+                    message.className = 'text-gray-600';
+                    message.textContent = dm.message;
+                    chatItem.appendChild(message);
+
+                    chatList.appendChild(chatItem);
+                });
+
+                // Open the chatModal after fetching the DMs
+                openModal('chatModal');
+
+                // Set the boardId
+                var boardIdInput = document.getElementById('boardId');
+                if (boardIdInput) {
+                    boardIdInput.value = boardId;
+                }
+            });
     });
+});
 
     document.querySelectorAll('[data-role="sponeButton"]').forEach(function (sponeButton) {
         sponeButton.addEventListener('click', function () {

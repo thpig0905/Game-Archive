@@ -24,4 +24,8 @@ public class BoardDMService {
     public void addBoardDM(BoardDM boardDM) {
         boardDMRepository.save(boardDM);
     }
+
+    public List<BoardDM> findBoardDMsByBoardId(Long boardId) {
+        return boardDMRepository.findBoardDMsByBoardId(boardId);
+    }
 }
