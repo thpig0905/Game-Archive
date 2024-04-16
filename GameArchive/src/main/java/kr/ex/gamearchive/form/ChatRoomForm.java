@@ -10,5 +10,5 @@ import java.util.Date;
 public class ChatRoomForm {
     private Long id;
     private String name;
-    private Date regDate;
+    private Date createdDate;
 }
