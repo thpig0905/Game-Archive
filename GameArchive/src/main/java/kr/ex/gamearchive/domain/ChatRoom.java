@@ -1,10 +1,9 @@
 package kr.ex.gamearchive.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
+import java.util.Date;
 
 @Getter
 @Setter
@@ -19,5 +18,11 @@ public class ChatRoom {
     private Long id;
 
     private String name;
+    private Date createdDate;
 
+    @Builder
+    public ChatRoom(String name) {
+        this.name = name;
+        this.createdDate = new Date();
+    }
 }
