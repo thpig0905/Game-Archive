@@ -42,7 +42,7 @@ public class MainController {
         model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("boards", boards);
         model.addAttribute("dms", boardDMs);
-        model.addAttribute("chatRoom", chatRoom);
+        model.addAttribute("chatRooms", chatRoom);
         return "main/main";
     }
 

@@ -205,16 +205,20 @@
                 </div>
             </div>
 
-            <div class="bg-orange-400 rounded-lg" style="width: 80%; height: 30px; display:flex; justify-content: center; align-items: center; margin-top: 20px">
+            <div id="addChatRoomButton" class="bg-orange-400 rounded-lg"
+                 style="width: 80%; height: 30px; display:flex; justify-content: center; align-items: center; margin-top: 20px; cursor: pointer">
                 <i class="fa-solid fa-plus fa-sm" style="color: #f5be7f; font-size: 1.5em"></i>
             </div>
 
             <div id="chatRoomList" class="bg-orange-300 rounded-lg"
                  style="width: 380px; height: 450px; margin-top: 20px; padding: 20px; display: flex; flex-direction: column; align-items: center; overflow: scroll;">
 
-                <a href="" class="bg-purple-400 rounded-lg"
+                <a th:each="chatRoom, stat : ${chatRooms}"
+                   th:href="@{/chat/chatRoom(id=${chatRoom.id})}"
+                   th:class="${stat.first} ? 'bg-purple-400 rounded-lg' : 'bg-purple-400 rounded-lg mt-5'"
                    style="font-size: 1.5em;font-weight: bold; color: white; width: 350px; height: 50px; text-align: center; line-height: 50px; cursor: pointer;">
-                    방이름</a>
+                    <p th:text="${chatRoom.name}"></p>
+                </a>
 
             </div>
 
@@ -278,7 +282,7 @@
                        style="width: 450px; height: 25px;">
             </div>
             <!-- 보드 ID 입력 필드 -->
-            <input type="hidden" id="boardId" name="boardId" >
+            <input type="hidden" id="boardId" name="boardId">
             <input type="hidden" name="userName" th:value="${user.name}">
             <div>
                 <button type="submit"
@@ -396,6 +400,28 @@
                 <input type="submit" style="color: white; cursor: pointer; margin-top: 15px"
                        class="px-4 bg-sky-500 p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2"
                        value="Charge">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addChatRoomModal" tabindex="-1" role="dialog" aria-labelledby="chargeModalLabel"
+     aria-hidden="true">
+    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50" onclick="closeModal('addChatRoomModal')"></div>
+    <div class="modal-container bg-blue-500 w-11/12 md:max-w-md mx-auto rounded-lg shadow-lg z-50 overflow-y-auto">
+        <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+            <span class="close" onclick="closeModal('addChatRoomModal')">&times;</span>
+        </div>
+        <div class="modal-content py-4 text-left px-6 rounded-lg">
+            <form action="/chat/createChatRoom" method="post">
+                <div>
+                    <label for="roomName" class="block text-sm font-medium text-gray-700">방 이름</label>
+                    <input type="text" id="roomName" name="name" class="bg-gray-200 rounded-lg"
+                           style="width: 90%; height: 30px; text-align: center; line-height: 24px; margin-top: 20px">
+                </div>
+                <input type="submit" style="color: white; cursor: pointer; margin-top: 15px"
+                       class="px-4 bg-sky-500 p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2"
+                       value="추가">
             </form>
         </div>
     </div>

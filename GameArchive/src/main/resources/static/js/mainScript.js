@@ -144,6 +144,13 @@ window.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    const addChatRoomButton = document.getElementById('addChatRoomButton')
+    if (addChatRoomButton) {
+        addChatRoomButton.addEventListener('click', function () {
+            openModal('addChatRoomModal');
+        });
+    }
+
     // Add click event listener to userImg to open the myInfo modal
     const userImg = document.getElementById('userImg');
     if (userImg) {
@@ -234,7 +241,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 // 모달 외부를 클릭하면 모달을 닫습니다.
 window.addEventListener('click', function (event) {
-    ['userInfoModal', 'myInfoModal', 'chatModal', 'sponeModal', 'chargeModal', 'addBoardModal'].forEach(function(modalId) {
+    ['userInfoModal', 'myInfoModal', 'chatModal', 'sponeModal', 'chargeModal', 'addBoardModal', 'addChatRoomModal'].forEach(function(modalId) {
         if (event.target == document.getElementById(modalId)) {
             closeModal(modalId);
         }
