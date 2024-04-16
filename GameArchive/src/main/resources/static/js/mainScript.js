@@ -51,7 +51,7 @@ function closeModal(modalId) {
         modal.style.opacity = "0"; // Set modal opacity to 0
         setTimeout(function () {
             modal.style.display = "none"; // Set modal display to none
-        }, 1000);
+        }, 1000); // Change display after changing opacity using setTimeout
     }
 }
 
@@ -79,64 +79,43 @@ window.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // 모든 userImg 요소에 대한 클릭 이벤트 리스너를 추가합니다.
-    document.querySelectorAll('[data-role="userImg"]').forEach(function (userImg) {
-        userImg.addEventListener('click', function () {
-            // 데이터 속성에서 사용자 정보를 가져옵니다.
-            var name = this.getAttribute('data-name');
-            var title = this.getAttribute('data-title');
-            var level = this.getAttribute('data-level');
-            var image = this.getAttribute('data-image');
+    // Add click event listeners to elements with data-role="dm" to open the chatModal with the correct boardId
+    document.querySelectorAll('[data-role="dm"]').forEach(function(dmButton) {
+        dmButton.addEventListener('click', function() {
+            var boardId = this.getAttribute('data-boardId');
+            fetch('/board/' + boardId + '/dms')
+                .then(response => response.json())
+                .then(dms => {
+                    var chatList = document.getElementById('chatList');
+                    chatList.innerHTML = ''; // Clear the chat list
+                    dms.forEach(function(dm) {
+                        var chatItem = document.createElement('div');
+                        chatItem.className = 'chatItem p-2 rounded-lg bg-white mb-2';
 
-            // 모달의 내용을 업데이트합니다.
-            document.getElementById('userName').textContent = name;
-            document.getElementById('userTitle').textContent = title;
-            document.getElementById('userLevel').textContent = level;
-            document.getElementById('userProfile').src = image;
+                        var userName = document.createElement('h3');
+                        userName.className = 'font-bold text-gray-700';
+                        userName.textContent = dm.userName;
+                        chatItem.appendChild(userName);
 
-            // 모달을 표시합니다.
-            document.getElementById('userInfoModal').style.display = 'block';
+                        var message = document.createElement('p');
+                        message.className = 'text-gray-600';
+                        message.textContent = dm.message;
+                        chatItem.appendChild(message);
+
+                        chatList.appendChild(chatItem);
+                    });
+
+                    // Open the chatModal after fetching the DMs
+                    openModal('chatModal');
+
+                    // Set the boardId
+                    var boardIdInput = document.getElementById('boardId');
+                    if (boardIdInput) {
+                        boardIdInput.value = boardId;
+                    }
+                });
         });
     });
-
-
-  // Add click event listeners to elements with data-role="dm" to open the chatModal with the correct boardId
-document.querySelectorAll('[data-role="dm"]').forEach(function(dmButton) {
-    dmButton.addEventListener('click', function() {
-        var boardId = this.getAttribute('data-boardId');
-        fetch('/board/' + boardId + '/dms')
-            .then(response => response.json())
-            .then(dms => {
-                var chatList = document.getElementById('chatList');
-                chatList.innerHTML = ''; // Clear the chat list
-                dms.forEach(function(dm) {
-                    var chatItem = document.createElement('div');
-                    chatItem.className = 'chatItem p-2 rounded-lg bg-white mb-2';
-
-                    var userName = document.createElement('h3');
-                    userName.className = 'font-bold text-gray-700';
-                    userName.textContent = dm.userName;
-                    chatItem.appendChild(userName);
-
-                    var message = document.createElement('p');
-                    message.className = 'text-gray-600';
-                    message.textContent = dm.message;
-                    chatItem.appendChild(message);
-
-                    chatList.appendChild(chatItem);
-                });
-
-                // Open the chatModal after fetching the DMs
-                openModal('chatModal');
-
-                // Set the boardId
-                var boardIdInput = document.getElementById('boardId');
-                if (boardIdInput) {
-                    boardIdInput.value = boardId;
-                }
-            });
-    });
-});
 
     document.querySelectorAll('[data-role="sponeButton"]').forEach(function (sponeButton) {
         sponeButton.addEventListener('click', function () {
@@ -156,19 +135,6 @@ document.querySelectorAll('[data-role="dm"]').forEach(function(dmButton) {
             // 모달을 표시합니다.
             document.getElementById('sponeModal').style.display = 'block';
         });
-    });
-
-// 모달의 닫기 버튼에 대한 클릭 이벤트 리스너를 추가합니다.
-    document.querySelector('#userInfoModal .close').addEventListener('click', function () {
-        // 모달을 숨깁니다.
-        document.getElementById('userInfoModal').style.display = 'none';
-    });
-
-// 모달 외부를 클릭하면 모달을 닫습니다.
-    window.addEventListener('click', function (event) {
-        if (event.target == document.getElementById('userInfoModal')) {
-            document.getElementById('userInfoModal').style.display = 'none';
-        }
     });
 
     const userImage = document.querySelectorAll('[data-role="userImage"]');
@@ -264,4 +230,13 @@ document.querySelectorAll('[data-role="dm"]').forEach(function(dmButton) {
             }
         });
     }
+});
+
+// 모달 외부를 클릭하면 모달을 닫습니다.
+window.addEventListener('click', function (event) {
+    ['userInfoModal', 'myInfoModal', 'chatModal', 'sponeModal', 'chargeModal', 'addBoardModal'].forEach(function(modalId) {
+        if (event.target == document.getElementById(modalId)) {
+            closeModal(modalId);
+        }
+    });
 });
