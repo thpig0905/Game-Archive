@@ -1,11 +1,14 @@
-# OpenJDK 17을 기본 이미지로 설정
-FROM openjdk:17-oracle
+FROM amazoncorretto:17
 
-# 작업 디렉토리 설정
-WORKDIR /app
+COPY GameArchive-0.0.1-SNAPSHOT.jar /app/test.jar
+COPY entrypoint.sh /app/entrypoint.sh
 
-# 호스트의 JAR 파일을 컨테이너로 복사
-COPY build/libs/*.jar app.jar
+ENV APP_HOME /app
+EXPOSE 8080
+VOLUME /app/upload
 
-# 컨테이너 내에서 애플리케이션 실행
-CMD ["java", "-jar", "app.jar"]
+WORKDIR $APP_HOME
+
+RUN chmod +x /app/entrypoint.sh
+
+ENTRYPOINT ["/app/entrypoint.sh"]
