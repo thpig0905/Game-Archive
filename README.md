@@ -1,4 +1,4 @@
-# spring-boot-final
+# Game Archive
 
 # 프로젝트 소개
 
@@ -48,13 +48,15 @@
 ### BackEnd :
 
 - Java (Intellij) + Spring Boot
-- Scala (Intellij)
-- Rust (Intellij)
+- ~~Scala (Intellij)~~ (현재 프로젝트 환경 호환 문제로 보류)
+- ~~Rust (Intellij)~~ (현재 프로젝트 환경 호환 문제로 보류)
 - C# (Unity)
 - MySQL
-- MariaDB or MongoDB
-- netlify or Vercel
-- Redis
+- ~~MariaDB or MongoDB~~ (application.yml 파일에 database 설정 오류로 보류)
+- ~~netlify or Vercel, CloudeFlare~~ (다음 서비스들은 정적 웹만 지원하므로 취소)
+- AWS
+- JSON
+- JPA
 
 ### FrontEnd :
 
@@ -63,8 +65,6 @@
 - JS
 - Tailwind
 - npm
-- Node.js
-- React
 
 ### API :
 
@@ -73,14 +73,10 @@
 ### 버전관리 :
 
 - Git / GitHub
-  
-## 게임 
+- Docker images
+
+## github 링크
+
+https://github.com/thpig0905/spring-boot-final
 
 ---
-- Tetris 게임 ver 0.0.1 이 추가 되었습니다. 간단한 플레이 테스트가 가능합니다.
-
-
-## 테스트 안내
----
-- 필수적으로 MySQL 을 이용하여 game_archive 데이터베이스 생성 후 시도하시길 바랍니다.
-- 자세한 내용은 application.yml 파일을 읽어보세요. 
