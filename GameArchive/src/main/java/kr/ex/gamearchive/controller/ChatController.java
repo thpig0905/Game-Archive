@@ -1,6 +1,6 @@
 package kr.ex.gamearchive.controller;
 
-import kr.ex.gamearchive.domain.ChatRoom;
+import kr.ex.gamearchive.model.ChatRoom;
 import kr.ex.gamearchive.form.ChatRoomForm;
 import kr.ex.gamearchive.service.ChatRoomService;
 import org.springframework.stereotype.Controller;

@@ -1,10 +1,9 @@
 package kr.ex.gamearchive.service;
 
-import kr.ex.gamearchive.domain.User;
+import kr.ex.gamearchive.model.User;
 import kr.ex.gamearchive.form.UserForm;
 import kr.ex.gamearchive.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

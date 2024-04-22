@@ -1,8 +1,7 @@
-package kr.ex.gamearchive.domain;
+package kr.ex.gamearchive.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import kr.ex.gamearchive.service.UserService;
 import lombok.*;
 
 import java.util.Date;

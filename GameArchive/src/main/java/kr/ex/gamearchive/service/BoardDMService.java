@@ -1,8 +1,7 @@
 package kr.ex.gamearchive.service;
 
-import kr.ex.gamearchive.domain.BoardDM;
+import kr.ex.gamearchive.model.BoardDM;
 import kr.ex.gamearchive.repository.BoardDMRepository;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

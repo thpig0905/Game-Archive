@@ -1,9 +1,9 @@
 package kr.ex.gamearchive.controller;
 
 import jakarta.servlet.http.HttpSession;
-import kr.ex.gamearchive.domain.BoardDM;
-import kr.ex.gamearchive.domain.Boards;
-import kr.ex.gamearchive.domain.ChatRoom;
+import kr.ex.gamearchive.model.BoardDM;
+import kr.ex.gamearchive.model.Boards;
+import kr.ex.gamearchive.model.ChatRoom;
 import kr.ex.gamearchive.service.BoardDMService;
 import kr.ex.gamearchive.service.BoardsService;
 import kr.ex.gamearchive.service.ChatRoomService;

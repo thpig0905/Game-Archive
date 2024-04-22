@@ -1,7 +1,6 @@
 package kr.ex.gamearchive.repository;
 
-import kr.ex.gamearchive.domain.User;
-import kr.ex.gamearchive.form.UserForm;
+import kr.ex.gamearchive.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

@@ -1,4 +1,4 @@
-package kr.ex.gamearchive.domain;
+package kr.ex.gamearchive.model;
 
 public enum Role {
     USER, ADMIN

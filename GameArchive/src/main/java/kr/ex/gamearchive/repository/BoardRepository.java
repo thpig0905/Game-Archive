@@ -1,6 +1,6 @@
 package kr.ex.gamearchive.repository;
 
-import kr.ex.gamearchive.domain.Boards;
+import kr.ex.gamearchive.model.Boards;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

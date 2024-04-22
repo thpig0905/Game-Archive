@@ -1,4 +1,4 @@
-package kr.ex.gamearchive.domain;
+package kr.ex.gamearchive.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;

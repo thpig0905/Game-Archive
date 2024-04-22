@@ -1,6 +1,6 @@
 package kr.ex.gamearchive.form;
 
-import kr.ex.gamearchive.domain.User;
+import kr.ex.gamearchive.model.User;
 import lombok.Getter;
 import lombok.Setter;
 

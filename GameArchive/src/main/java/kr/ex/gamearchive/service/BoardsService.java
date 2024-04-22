@@ -1,6 +1,6 @@
 package kr.ex.gamearchive.service;
 
-import kr.ex.gamearchive.domain.Boards;
+import kr.ex.gamearchive.model.Boards;
 import kr.ex.gamearchive.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;

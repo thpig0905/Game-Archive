@@ -1,8 +1,8 @@
 package kr.ex.gamearchive.controller;
 
 import jakarta.servlet.http.HttpSession;
-import kr.ex.gamearchive.domain.Donate;
-import kr.ex.gamearchive.domain.User;
+import kr.ex.gamearchive.model.Donate;
+import kr.ex.gamearchive.model.User;
 import kr.ex.gamearchive.form.DonateForm;
 import kr.ex.gamearchive.service.DonateService;
 import kr.ex.gamearchive.service.UserService;

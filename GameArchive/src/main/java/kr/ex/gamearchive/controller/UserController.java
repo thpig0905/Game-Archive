@@ -1,7 +1,7 @@
 package kr.ex.gamearchive.controller;
 
 import jakarta.servlet.http.HttpSession;
-import kr.ex.gamearchive.domain.User;
+import kr.ex.gamearchive.model.User;
 import kr.ex.gamearchive.form.UserForm;
 import kr.ex.gamearchive.service.UserService;
 import org.springframework.stereotype.Controller;

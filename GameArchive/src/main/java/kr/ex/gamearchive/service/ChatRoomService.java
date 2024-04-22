@@ -1,6 +1,6 @@
 package kr.ex.gamearchive.service;
 
-import kr.ex.gamearchive.domain.ChatRoom;
+import kr.ex.gamearchive.model.ChatRoom;
 import kr.ex.gamearchive.repository.ChatRoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

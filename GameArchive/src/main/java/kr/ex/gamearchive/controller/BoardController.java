@@ -1,9 +1,9 @@
 package kr.ex.gamearchive.controller;
 
 import jakarta.servlet.http.HttpSession;
-import kr.ex.gamearchive.domain.BoardDM;
-import kr.ex.gamearchive.domain.Boards;
-import kr.ex.gamearchive.domain.User;
+import kr.ex.gamearchive.model.BoardDM;
+import kr.ex.gamearchive.model.Boards;
+import kr.ex.gamearchive.model.User;
 import kr.ex.gamearchive.form.BoardDMForm;
 import kr.ex.gamearchive.form.BoardForm;
 import kr.ex.gamearchive.service.BoardDMService;
