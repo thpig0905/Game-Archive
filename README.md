@@ -66,10 +66,6 @@
 - Tailwind
 - npm
 
-### API :
-
-- 
-
 ### 버전관리 :
 
 - Git / GitHub
